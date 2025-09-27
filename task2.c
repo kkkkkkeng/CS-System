@@ -229,112 +229,126 @@ int main()
             {
                 printf("Test %d:\n", i + 1);
                 int x = randint();
-                printf("AbsVal:");
+                printf("AbsVal:\n");
+                printf("Custom absVal: %d ", absVal(x));
+                printf("Standard absVal: %d\n", absVal_standard(x));
                 if (absVal(x) != absVal_standard(x))
                     printf("Failed on %d\n", x);
-                else
-                {
+                else{
                     printf("Passed on %d\n", x);
                 }
                 x = randint();
-                printf("Negate:");
-                if (negate(x) != negate_standard(x))
+                printf("Negate:\n");
+                printf("Custom negate: %d ", negate(x));
+                printf("Standard negate: %d\n", negate_standard(x));
+                if (negate(x) != negate_standard(x))    
                     printf("Failed on %d\n", x);
-                else
-                {
+                else{
                     printf("Passed on %d\n", x);
                 }
                 int y = randint();
-                printf("BitAnd:");
-                if (bitAnd(x, y) != bitAnd_standard(x, y))
+                printf("BitAnd:\n");
+                printf("Custom bitAnd: %d ", bitAnd(x, y));
+                printf("Standard bitAnd: %d\n", bitAnd_standard(x, y));
+                if (bitAnd(x, y) != bitAnd_standard(x, y))  
                     printf("Failed on %d, %d\n", x, y);
-                else
-                {
+                else{
+                    printf("Passed on %d, %d\n", x, y);
+                }   
+                x = randint();
+                y = randint();
+                printf("BitOr:\n");
+                printf("Custom bitOr: %d ", bitOr(x, y));
+                printf("Standard bitOr: %d\n", x | y);
+                if (bitOr(x, y) != (x | y))  
+                    printf("Failed on %d, %d\n", x, y);
+                else{
                     printf("Passed on %d, %d\n", x, y);
                 }
                 x = randint();
                 y = randint();
-                printf("BitOr:");
-                if (bitOr(x, y) != (x | y))
+                printf("BitXor:\n");
+                printf("Custom bitXor: %d ", bitXor(x, y)); 
+                printf("Standard bitXor: %d\n", bitXor_standard(x, y));
+                if (bitXor(x, y) != bitXor_standard(x, y))  
                     printf("Failed on %d, %d\n", x, y);
-                else
-                {
+                else{
                     printf("Passed on %d, %d\n", x, y);
                 }
-                x = randint();
-                y = randint();
-                printf("BitXor:");
-                if (bitXor(x, y) != bitXor_standard(x, y))
-                    printf("Failed on %d, %d\n", x, y);
-                else
-                {
-                    printf("Passed on %d, %d\n", x, y);
-                }
-                x = randint();
-                printf("isTmax:");
+                x = randint();  
+                printf("isTmax:\n");
+                printf("Custom isTmax: %d ", isTmax(x));
+                printf("Standard isTmax: %d\n", isTmax_standard(x));
                 if (isTmax(x) != isTmax_standard(x))
                     printf("Failed on %d\n", x);
-                else
-                {
+                else{
                     printf("Passed on %d\n", x);
                 }
                 x = randint();
-                printf("bitCount:");
+                printf("BitCount:\n");
+                printf("Custom bitCount: %d ", bitCount(x));
+                printf("Standard bitCount: %d\n", bitCount_standard(x));
                 if (bitCount(x) != bitCount_standard(x))
                     printf("Failed on %d\n", x);
-                else
-                {
-                    printf("Passed on %d\n", x);
+                else{
+                    printf("Passed on %d\n", x);    
                 }
                 int highbit = rand() % 32;
                 int lowbit = rand() % (highbit + 1);
-                printf("bitMask:");
+                printf("BitMask:\n");
+                printf("Custom bitMask: %d ", bitMask(highbit, lowbit));
+                printf("Standard bitMask: %d\n", bitMask_standard(highbit, lowbit));
                 if (bitMask(highbit, lowbit) != bitMask_standard(highbit, lowbit))
                     printf("Failed on %d, %d\n", highbit, lowbit);
-                else
-                {
+                else{
                     printf("Passed on %d, %d\n", highbit, lowbit);
                 }
                 x = randint();
                 y = randint();
-                printf("addOK:");
+                printf("AddOK:\n");
+                printf("Custom addOK: %d ", addOK(x, y));   
+                printf("Standard addOK: %d\n", addOK_standard(x, y));
                 if (addOK(x, y) != addOK_standard(x, y))
                     printf("Failed on %d, %d\n", x, y);
-                else
-                {
+                else{
                     printf("Passed on %d, %d\n", x, y);
-                }
+                }   
                 x = randint();
-                int n = rand() % 4;
-                int m = rand() % 4;
-                printf("byteswap:");
-                if (byteswap(x, n, m) != byteswap_standard(x, n, m))
+                n = rand() % 4;
+                m = rand() % 4; 
+                printf("Byteswap:\n");
+                printf("Custom byteswap: %d ", byteswap(x, n, m));
+                printf("Standard byteswap: %d\n", byteswap_standard(x, n, m));
+                if (byteswap(x, n, m) != byteswap_standard(x, n,   
+m))
                     printf("Failed on %d, %d, %d\n", x, n, m);
-                else
-                {
-                    printf("Passed on %d, %d, %d\n", x,
-                           n, m);
+                else{
+                    printf("Passed on %d, %d, %d\n", x, n, m);
                 }
                 x = randint();
-                printf("bang:");
+                printf("Bang:\n");
+                printf("Custom bang: %d ", bang(x));    
+                printf("Standard bang: %d\n", bang_standard(x));
                 if (bang(x) != bang_standard(x))
-                    printf("Failed on %d\n", x);
-                else
-                {
-                    printf("Passed on %d\n", x);
+                    printf("Failed on %d\n", x);    
+                else{
+                    printf("Passed on %d\n", x);    
                 }
                 x = randint();
-                printf("bitParity:");
+                printf("BitParity:\n");
+                printf("Custom bitParity: %d ", bitParity(x));
+                printf("Standard bitParity: %d\n", bitParity_standard(x));
                 if (bitParity(x) != bitParity_standard(x))
                     printf("Failed on %d\n", x);
-                else
-                {
+                else{
                     printf("Passed on %d\n", x);
                 }
                 printf("\n");
             }
+            break;
         default:
-            printf("Invalid operation. Please try again.\n");
+            printf("Invalid operation!\n");
+            break; 
         }
         getchar();
     }

@@ -83,7 +83,7 @@ int restore_student(char *buf, int len, student *s)
 int main()
 {
     student old_s[N] = {
-        {"zhang", 19, 48, "handsome boy"},
+        {"zhang", 19, 48.0, "handsome boy"},
         {"bob", 18, 90.0, "good boy"},
         {"alice", 20, 88, "pretty girl"},
         {"mike", 17, 60, "nice,nice!"},
@@ -92,15 +92,28 @@ int main()
     char message[1024];
     // student s = {"bob", 18, 90.0, "good boy"};
     student *p = old_s;
+    printf("Original data size: %lu\n", sizeof(old_s));
+    printf("Original data:\n");
+    for(int i=0;i<5;i++){
+        printf("%s %d %.2f %s\n",old_s[i].name,old_s[i].age,old_s[i].score,old_s[i].remark);
+    }
     int byte_cnt = pack_student_bytebybyte(p, 2, message);
     byte_cnt += pack_student_whole(p + 2, 3, message + byte_cnt);
-    int stu_cnt = restore_student(message, byte_cnt, new_s);
-    for (int i = 0; i < 40; i++)
+    printf("The packed data size: %d\n", byte_cnt);
+    printf("The packed data:\n");
+    for (int i = 0; i < byte_cnt; i++)
     {
-        printf("0x%02x ", message[i]);
+        printf("0x%02x ", (unsigned char)message[i]);
         if (!((i + 1) % 8))
         {
             printf("\n");
         }
     }
+    printf("\n");
+    
+    int stu_cnt = restore_student(message, byte_cnt, new_s);
+    printf("The restored data:\n");
+    for(int i=0;i<stu_cnt;i++){
+        printf("%s %d %.2f %s\n",new_s[i].name,new_s[i].age,new_s[i].score,new_s[i].remark);
+    };
 }
