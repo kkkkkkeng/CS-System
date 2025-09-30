@@ -13,6 +13,7 @@ typedef struct temp
 } student;
 
 extern void display(student *s, int num);
+extern void average(student *s, int num);
 
 void initStudents(student *s, int num)
 {
@@ -122,7 +123,7 @@ int main()
 	start = current_millis();
 	for (int i = 0; i < 200000; i++)
 	{
-		computeAverageScore(s, STUDENTS_NUM);
+		average(s, STUDENTS_NUM);
 	}
 	finish = current_millis();
 	duration = finish - start;

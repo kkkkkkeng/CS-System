@@ -8,7 +8,9 @@ lpfmt_num:
 
     .text
     .globl display
+    .globl average
     .type display, @function
+    .type average,@function
 
 # void display(student* sptr, int num)
 # 参数传递规则 (cdecl, 32位 Linux):
@@ -55,4 +57,42 @@ display:
     popl    %ebp
     ret
 
+average:
+#void average(student* s,int num)
+#[esp+4] s
+#[esp+8] num
+    pushl %ebp
+    movl %esp,%ebp
+    pusha
+    movl 0x8(%ebp),%esi
+    add $0x14,%esi
+    
+outer:
+    movl 0xc(%ebp),%ecx
+    xor %eax,%eax
+    movl $0x8,%edx
+inner:
+    movswl (%esi),%ebx
+    add %ebx,%eax
+    add $0x2,%esi
+    dec %edx
+    jnz inner
+    movb $0x8,%dl
+    idivb %dl
+    movsbw %al,%dx
+    movw %dx,(%esi)
+    add $0x16,%esi
+    dec %ecx
+    jnz outer
+
+    popa
+
+    movl %ebp,%esp
+    pop %ebp
+    ret
+    
+    
+
+
+    
     .section .note.GNU-stack,"",@progbits
